@@ -1,0 +1,4 @@
+*.pyc
+*.caffemodel
+*.txt
+*.npy

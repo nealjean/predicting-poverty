@@ -1,0 +1,282 @@
+name: "POVERTY_PREDICT"
+input: "data"
+input_dim: 32
+input_dim: 3
+input_dim: 400
+input_dim: 400
+
+layers {
+  bottom: "data"
+  top: "conv1"
+  name: "conv1"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 64
+    kernel_size: 11
+    stride: 4
+    
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.1
+    }
+
+  }
+  blobs_lr: 0
+  blobs_lr: 0
+}
+
+layers {
+  bottom: "conv1"
+  top: "conv1"
+  name: "relu1"
+  type: RELU
+}
+layers {
+  bottom: "conv1"
+  top: "norm1"
+  name: "norm1"
+  type: LRN
+  lrn_param {
+    local_size: 5
+    alpha: 0.0005
+    beta: 0.75
+    k: 2
+  }
+}
+layers {
+  bottom: "norm1"
+  top: "pool1"
+  name: "pool1"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool1"
+  top: "conv2"
+  name: "conv2"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 256
+    pad: 2
+    kernel_size: 5
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.1
+    }
+  }
+}
+layers {
+  bottom: "conv2"
+  top: "conv2"
+  name: "relu2"
+  type: RELU
+}
+layers {
+  bottom: "conv2"
+  top: "norm2"
+  name: "norm2"
+  type: LRN
+  lrn_param {
+    local_size: 5
+    alpha: 0.0005
+    beta: 0.75
+    k: 2
+  }
+}
+layers {
+  bottom: "norm2"
+  top: "pool2"
+  name: "pool2"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool2"
+  top: "conv3"
+  name: "conv3"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 256
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.1
+    }
+  }
+  blobs_lr:0.1
+  blobs_lr:1
+}
+layers {
+  bottom: "conv3"
+  top: "conv3"
+  name: "relu3"
+  type: RELU
+}
+layers {
+  bottom: "conv3"
+  top: "conv4"
+  name: "conv4"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 256
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.1
+    }
+  }
+  blobs_lr:0.1
+  blobs_lr:1
+}
+layers {
+  bottom: "conv4"
+  top: "conv4"
+  name: "relu4"
+  type: RELU
+}
+layers {
+  bottom: "conv4"
+  top: "conv5"
+  name: "conv5"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 256
+    pad: 1
+    kernel_size: 3
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.1
+    }
+  }
+  blobs_lr:0.1
+  blobs_lr:1
+}
+layers {
+  bottom: "conv5"
+  top: "conv5"
+  name: "relu5"
+  type: RELU
+}
+layers {
+  bottom: "conv5"
+  top: "pool5"
+  name: "pool5"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool5"
+  top: "conv6"
+  name: "conv6"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 4096
+    pad: 0
+    kernel_size: 6
+    stride:6
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.1
+    }
+  }
+}
+layers {
+  bottom: "conv6"
+  top: "conv6"
+  name: "relu6"
+  type: RELU
+}
+layers {
+  bottom: "conv6"
+  top: "conv7"
+  name: "conv7"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 4096
+    pad: 0
+    kernel_size: 1
+    stride:1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.1
+    }
+  }
+}
+layers {
+  bottom: "conv7"
+  top: "conv7"
+  name: "relu7"
+  type: RELU
+}
+layers {
+  bottom: "conv7"
+  top: "conv8"
+  name: "conv8"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 3
+    pad: 0
+    kernel_size: 1
+    stride:1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.1
+    }
+  }
+}
+layers {
+  bottom: "conv8"
+  top: "pool6"
+  name: "pool6"
+  type: POOLING
+  pooling_param {
+    pool: AVE
+    kernel_size:2
+    stride: 1
+  }
+}
+
+layers {
+  bottom: "pool6"
+  top: "prob"
+  name: "prob"
+  type: SOFTMAX
+}
