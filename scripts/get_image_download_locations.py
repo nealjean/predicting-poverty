@@ -79,7 +79,7 @@ def pixelsToCoords(srcAddr, pixelPairs):
 
 
 if __name__ == '__main__':
-  nightlight_tif = "../data/input/Nightlights/F182013.v4c_web.stable_lights.avg_vis.tif"
+  nightlight_tif = "../data/input/Nightlights/2013/F182013.v4c_web.stable_lights.avg_vis.tif"
 
   # DHS
   print("Generating candidate image locations for DHS")
