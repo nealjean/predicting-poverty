@@ -157,7 +157,7 @@ write.table(cluster(nga13.vars), 'data/output/LSMS/Nigeria 2013 LSMS (Cluster).t
 
 #### Write DHS Data ####
 
-vars <- c('001', '005', 271))
+vars <- c('001', '005', 271)
 vars <- c('hhid', paste0('hv', vars))
 names <- c('hhid', 'cluster', 'weight', 'wealthscore')
 
