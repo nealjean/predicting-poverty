@@ -62,8 +62,8 @@ For all data processing scripts, the user needs to set the working directory to 
 		4. Malawi 2013
 	3. Unzip these files so that **data/input/LSMS** contains the following folders of data:
 		1. UGA_2011_UNPS_v01_M_STATA
-		2. DATA (formerly TZA_2012_LSMS_v01_M_STATA_English_labels before a re-upload in January 2016)
-		3. NGA_2012_LSMS_v03_M_STATA
+		2. TZA_2012_LSMS_v01_M_STATA_English_labels
+		3. DATA (formerly NGA_2012_LSMS_v03_M_STATA before a re-upload in January 2016)
 		4. MWI_2013_IHPS_v01_M_STATA
 2. Download DHS data
 	1. Visit the [host website for the Demographic and Health Surveys data](http://dhsprogram.com/data/dataset_admin/download-datasets.cfm)
