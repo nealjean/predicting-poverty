@@ -73,14 +73,14 @@ def pixelsToCoords(srcAddr, pixelPairs):
   xoff, a, b, yoff, d, e = ds.GetGeoTransform()
   latLonPairs = []
   for pixel in pixelPairs:
-    x, y = pixels
+    x, y = pixel
     latLonPairs.append(pixel2coord(x, y, xoff, a, b, yoff, d, e))
   return latLonPairs
 
 
 if __name__ == '__main__':
   nightlight_tif = "../data/input/Nightlights/F182013.v4c_web.stable_lights.avg_vis.tif"
-  
+
   # DHS
   print("Generating candidate image locations for DHS")
   countries = ['nigeria', 'tanzania', 'uganda', 'malawi', 'rwanda']
