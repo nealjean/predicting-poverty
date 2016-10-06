@@ -127,7 +127,7 @@ mwi13.elev <- raster('data/input/DIVA-GIS/MWI_alt.gri') %>%
 
 mwi13.vars <- list(mwi13.cons, mwi13.coords, mwi13.rururb, mwi13.room, mwi13.metal, mwi13.elev) %>%
   Reduce(function(x, y) merge(x, y, by = 'hhid'), .) %>%
-  nl(mwi13.vars, 2013)
+  nl(2013)
 
 write.table(mwi13.vars, 'data/output/LSMS/Malawi 2013 LSMS (Household).txt', row.names = F)
 write.table(cluster(mwi13.vars), 'data/output/LSMS/Malawi 2013 LSMS (Cluster).txt', row.names = F)
