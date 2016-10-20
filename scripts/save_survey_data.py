@@ -7,7 +7,7 @@ def retrieve_and_save(countries, fns, out_dir, names, keys, sample=True):
   for idx, country in enumerate(countries):
     df = pd.read_csv(fns[idx], sep=' ')
     if sample:
-      df = df[df.sample==1]
+      df = df[df["sample"]==1]
     df = df[(df.lat!=0) & (df.lon!=0)]
     for name, key in zip(names, keys):
       if not os.path.exists(os.path.join(out_dir, country)):
