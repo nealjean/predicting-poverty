@@ -81,7 +81,7 @@ For all data processing scripts, the user needs to set the working directory to 
 		4. NG_2013_DHS_01202016_1716_86173
 		5. MW_2010_DHS_01202016_1713_86173
 		
-		(Note that the names of these folders may vary slightly depend on the date the data is downloaded)
+		(Note that the names of these folders will vary slightly depending on the date the data is downloaded)
 3. Run the following files in the script folder
 	1. DownloadPublicData.R
 	2. ProcessSurveyData.R
