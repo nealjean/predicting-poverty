@@ -9,6 +9,8 @@ library(raster)
 extract <- raster::extract # Ensure the 'magrittr' package does not mask the 'raster' package's 'extract' function
 library(readstata13) # One Tanzanian LSMS .dta file was saved in Stata-13 format
 library(plyr)
+'%&%' <- function(x,y)paste0(x,y)
+
 
 dir.create('data/output/LSMS', showWarnings = F)
 dir.create('data/output/DHS', showWarnings = F)
@@ -156,17 +158,20 @@ write.table(nga13.vars, 'data/output/LSMS/Nigeria 2013 LSMS (Household).txt', ro
 write.table(cluster(nga13.vars), 'data/output/LSMS/Nigeria 2013 LSMS (Cluster).txt', row.names = F)
 
 #### Write DHS Data ####
+path <- function(iso){
+  return(paste0('data/input/DHS/',list.files('data/input/DHS')[substr(list.files('data/input/DHS'),1,2)==iso], '/'))
+}
 
 vars <- c('001', '005', 271)
 vars <- c('hhid', paste0('hv', vars))
 names <- c('hhid', 'cluster', 'weight', 'wealthscore')
 
 # Uganda 2011
-uga11.dhs <- read.dta('data/input/DHS/UG_2011_DHS_01202016_171_86173/ughr60dt/UGHR60FL.DTA', convert.factors=NA) %>%
+uga11.dhs <- read.dta(path('UG')%&%'ughr60dt/UGHR60FL.DTA', convert.factors=NA) %>%
   subset(select = vars)
 names(uga11.dhs) <- names
 
-uga11.coords <- read.dbf('data/input/DHS/UG_2011_DHS_01202016_171_86173/ugge61fl/UGGE61FL.dbf')[,c('DHSCLUST', 'LATNUM', 'LONGNUM')]
+uga11.coords <- read.dbf(path('UG')%&%'ugge61fl/UGGE61FL.dbf')[,c('DHSCLUST', 'LATNUM', 'LONGNUM')]
 names(uga11.coords) <- c('cluster', 'lat', 'lon')
 
 uga11.dhs <- merge(uga11.dhs, uga11.coords, by = 'cluster') %>%
@@ -177,11 +182,11 @@ write.table(cluster(uga11.dhs, T), 'data/output/DHS/Uganda 2011 DHS (Cluster).tx
 
 # Tanzania 2010
 
-tza10.dhs <- read.dta('data/input/DHS/TZ_2010_DHS_01202016_173_86173/tzhr63dt/TZHR63FL.DTA', convert.factors = NA) %>%
+tza10.dhs <- read.dta(path('TZ')%&%'tzhr63dt/TZHR63FL.DTA', convert.factors = NA) %>%
   subset(select = vars)
 names(tza10.dhs) <- names
 
-tza10.coords <- read.dbf('data/input/DHS/TZ_2010_DHS_01202016_173_86173/tzge61fl/TZGE61FL.dbf')[,c('DHSCLUST', 'LATNUM', 'LONGNUM')]
+tza10.coords <- read.dbf(path('TZ')%&%'tzge61fl/TZGE61FL.dbf')[,c('DHSCLUST', 'LATNUM', 'LONGNUM')]
 names(tza10.coords) <- c('cluster', 'lat', 'lon')
 
 tza10.dhs <- merge(tza10.dhs, tza10.coords, by = 'cluster') %>%
@@ -191,11 +196,11 @@ write.table(tza10.dhs, 'data/output/DHS/Tanzania 2010 DHS (Household).txt', row.
 write.table(cluster(tza10.dhs, T), 'data/output/DHS/Tanzania 2010 DHS (Cluster).txt', row.names = F)
 
 # Nigeria 2013
-nga13.dhs <- read.dta('data/input/DHS/NG_2013_DHS_01202016_1716_86173/nghr6adt/NGHR6AFL.DTA', convert.factors = NA) %>%
+nga13.dhs <- read.dta(path('NG')%&%'nghr6adt/NGHR6AFL.DTA', convert.factors = NA) %>%
   subset(select = vars)
 names(nga13.dhs) <- names
 
-nga13.coords <- read.dbf('data/input/DHS/NG_2013_DHS_01202016_1716_86173/ngge6afl/NGGE6AFL.dbf')[,c('DHSCLUST', 'LATNUM', 'LONGNUM')]
+nga13.coords <- read.dbf(path('NG')%&%'ngge6afl/NGGE6AFL.dbf')[,c('DHSCLUST', 'LATNUM', 'LONGNUM')]
 names(nga13.coords) <- c('cluster', 'lat', 'lon')
 
 nga13.dhs <- merge(nga13.dhs, nga13.coords, by = 'cluster') %>%
@@ -205,11 +210,11 @@ write.table(nga13.dhs, 'data/output/DHS/Nigeria 2013 DHS (Household).txt', row.n
 write.table(cluster(nga13.dhs, T), 'data/output/DHS/Nigeria 2013 DHS (Cluster).txt', row.names = F)
 
 # Malawi 2010
-mwi10.dhs <- read.dta('data/input/DHS/MW_2010_DHS_01202016_1713_86173/mwhr61dt/MWHR61FL.DTA', convert.factors = NA) %>%
+mwi10.dhs <- read.dta(path('MW')%&%'mwhr61dt/MWHR61FL.DTA', convert.factors = NA) %>%
   subset(select = vars)
 names(mwi10.dhs) <- names
 
-mwi10.coords <- read.dbf('data/input/DHS/MW_2010_DHS_01202016_1713_86173/mwge62fl/MWGE62FL.dbf')[,c('DHSCLUST', 'LATNUM', 'LONGNUM')]
+mwi10.coords <- read.dbf(path('MW')%&%'mwge62fl/MWGE62FL.dbf')[,c('DHSCLUST', 'LATNUM', 'LONGNUM')]
 names(mwi10.coords) <- c('cluster', 'lat', 'lon')
 
 mwi10.dhs <- merge(mwi10.dhs, mwi10.coords, by = 'cluster') %>%
@@ -219,11 +224,11 @@ write.table(mwi10.dhs, 'data/output/DHS/Malawi 2010 DHS (Household).txt', row.na
 write.table(cluster(mwi10.dhs, T), 'data/output/DHS/Malawi 2010 DHS (Cluster).txt', row.names = F)
 
 # Rwanda 2010
-rwa10.dhs <- read.dta('data/input/DHS/RW_2010_DHS_01312016_205_86173/rwhr61dt/RWHR61FL.DTA', convert.factors = NA) %>%
+rwa10.dhs <- read.dta(path('RW')%&%'rwhr61dt/RWHR61FL.DTA', convert.factors = NA) %>%
   subset(select = vars)
 names(rwa10.dhs) <- names
 
-rwa10.coords <- read.dbf('data/input/DHS/RW_2010_DHS_01312016_205_86173/rwge61fl/RWGE61FL.dbf')[,c('DHSCLUST', 'LATNUM', 'LONGNUM')]
+rwa10.coords <- read.dbf(path('RW')%&%'rwge61fl/RWGE61FL.dbf')[,c('DHSCLUST', 'LATNUM', 'LONGNUM')]
 names(rwa10.coords) <- c('cluster', 'lat', 'lon')
 
 rwa10.dhs <- merge(rwa10.dhs, rwa10.coords, by = 'cluster') %>%
