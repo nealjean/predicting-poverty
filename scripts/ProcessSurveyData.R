@@ -77,11 +77,8 @@ names(uga12.weight) <- c('hhid', 'weight')
 uga12.hh9 <- read.dta('data/input/LSMS/UGA_2011_UNPS_v01_M_STATA/GSEC9A.dta')
 uga12.room <- data.frame(hhid = uga12.hh9$HHID, room = uga12.hh9$h9q3)
 uga12.metal <- data.frame(hhid = uga12.hh9$HHID, roof = uga12.hh9$h9q4=='Iron sheets')
-uga12.elev <- raster('data/input/DIVA-GIS/UGA_alt.gri') %>%
-  extract(., uga12.coords[,c('lon', 'lat')]) %>%
-  data.frame(hhid = uga12.coords$hhid, elev = .) %>% na.omit()
 
-uga12.vars <- list(uga12.cons, uga12.rururb, uga12.coords, uga12.weight, uga12.room, uga12.metal, uga12.elev) %>%
+uga12.vars <- list(uga12.cons, uga12.rururb, uga12.coords, uga12.weight, uga12.room, uga12.metal) %>%
   Reduce(function(x,y) merge(x, y, by = 'hhid'), .) %>%
   nl(2012)
 
@@ -101,11 +98,8 @@ names(tza13.weight) <- c('hhid', 'weight')
 tza13.hhi <- read.dta('data/input/LSMS/TZA_2012_LSMS_v01_M_STATA_English_labels/HH_SEC_I.dta')
 tza13.room <- na.omit(data.frame(hhid = tza13.hhi$y3_hhid, room = tza13.hhi$hh_i07_1))
 tza13.metal <- data.frame(hhid = tza13.hhi$y3_hhid, metal = tza13.hhi$hh_i09=='METAL SHEETS (GCI)')
-tza13.elev <- raster('data/input/DIVA-GIS/TZA_alt.gri') %>%
-  extract(., tza13.coords[,c('lon', 'lat')]) %>%
-  data.frame(hhid = tza13.coords$hhid, elev = .) %>% na.omit()
 
-tza13.vars <- list(tza13.cons, tza13.coords, tza13.rururb, tza13.weight, tza13.room, tza13.metal, tza13.elev) %>%
+tza13.vars <- list(tza13.cons, tza13.coords, tza13.rururb, tza13.weight, tza13.room, tza13.metal) %>%
   Reduce(function(x, y) merge(x, y, by = 'hhid'), .) %>%
   nl(2013)
 
@@ -123,11 +117,8 @@ mwi13.rururb <- data.frame(hhid = mwi13.hha$y2_hhid, rururb = mwi13.hha$baseline
 mwi13.hhf <- read.dta('data/input/LSMS/MWI_2013_IHPS_v01_M_STATA/Household/HH_MOD_F.dta')
 mwi13.room <- data.frame(hhid = mwi13.hhf$y2_hhid, room = mwi13.hhf$hh_f10)
 mwi13.metal <- data.frame(hhid = mwi13.hhf$y2_hhid, metal = mwi13.hhf$hh_f10=='IRON SHEETS')
-mwi13.elev <- raster('data/input/DIVA-GIS/MWI_alt.gri') %>%
-  extract(., mwi13.coords[,c('lon', 'lat')]) %>%
-  data.frame(hhid = mwi13.coords$hhid, elev = .) %>% na.omit()
 
-mwi13.vars <- list(mwi13.cons, mwi13.coords, mwi13.rururb, mwi13.room, mwi13.metal, mwi13.elev) %>%
+mwi13.vars <- list(mwi13.cons, mwi13.coords, mwi13.rururb, mwi13.room, mwi13.metal) %>%
   Reduce(function(x, y) merge(x, y, by = 'hhid'), .) %>%
   nl(2013)
 
@@ -146,11 +137,8 @@ names(nga13.weight)[2] <- 'weight'
 nga13.phhh8 <- read.dta('data/input/LSMS/DATA/Post Harvest Wave 2/Household/sect8_harvestw2.dta')
 nga13.room <- data.frame(hhid = nga13.phhh8$hhid, room = nga13.phhh8$s8q9)
 nga13.metal <- data.frame(hhid = nga13.phhh8$hhid, metal = nga13.phhh8$s8q7=='IRON SHEETS')
-nga13.elev <- raster('data/input/DIVA-GIS/NGA_alt.gri') %>%
-  extract(., nga13.coords[,c('lon', 'lat')]) %>%
-  data.frame(hhid = nga13.coords$hhid, elev = .) %>% na.omit()
 
-nga13.vars <- list(nga13.cons, nga13.coords, nga13.rururb, nga13.weight, nga13.room, nga13.metal, nga13.elev) %>%
+nga13.vars <- list(nga13.cons, nga13.coords, nga13.rururb, nga13.weight, nga13.room, nga13.metal) %>%
   Reduce(function(x, y) merge(x, y, by = 'hhid'), .) %>%
   nl(2013)
 
