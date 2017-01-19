@@ -23,18 +23,4 @@ for (year in 2010:2013){
   print(year)
   rm(dest, file, temp, tif, url, year)
 }
-
-# Download elevation data from DIVA-GIS
-dir.create('data/input/DIVA-GIS')
-countries <- c('UGA', 'TZA', 'MWI', 'NGA')
-for (country in countries){
-  url <- paste0('http://biogeo.ucdavis.edu/data/diva/alt/', country, '_alt.zip')
-  temp <- paste0('data/input/DIVA-GIS')
-  dest <- paste0(temp, '/', country, '_alt.zip')
-  download.file(url, dest)
-  unzip(dest, exdir = temp)
-  unlink(paste0(temp, '/', country, '_alt.zip'))
-  rm(url, temp, dest)
-}
-
 unload(R.utils)
