@@ -1,5 +1,6 @@
 ## DOWNLOAD PUBLIC DATA ##
-# Functional and publicly available as of August 2016 #
+# Aug 2016: Functional and publicly available #
+# Jan 2017: Removed references to elevation data which had become restricted #
 
 setwd('predicting-poverty') # Set working directory to where you downloaded the replication folder
 rm(list=ls())
