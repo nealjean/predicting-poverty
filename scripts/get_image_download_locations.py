@@ -65,7 +65,7 @@ def locsToPixels(srcAddr, latLonPairs):
 def pixel2coord(x, y, xoff, a, b, yoff, d, e):
   xp = a * x + b * y + xoff
   yp = d * x + e * y + yoff
-  return(yp, xp)
+  return (yp, xp)
 
 
 def pixelsToCoords(srcAddr, pixelPairs):
@@ -74,7 +74,7 @@ def pixelsToCoords(srcAddr, pixelPairs):
   latLonPairs = []
   for pixel in pixelPairs:
     x, y = pixel
-    latLonPairs.append(pixel2coord(x, y, xoff, a, b, yoff, d, e))
+    latLonPairs.append(pixel2coord(x + 0.5, y + 0.5, xoff, a, b, yoff, d, e))
   return latLonPairs
 
 
