@@ -60,6 +60,9 @@ For all data processing scripts, the user needs to set the working directory to 
 		2. Tanzania 2012-13
 		3. Nigeria 2012-13
 		4. Malawi 2013
+		
+		UPDATE (08/02/2017): The LSMS website has apparently recently removed two files from their database which contain crucial consumption aggregates for Uganda 2011-12 and Malawi 2013. Since we are not at liberty to share those files ourselves, this would inhibit replication of consumption analysis in those countries. We have reached out and will update this page according to their response.
+		
 	3. Unzip these files so that **data/input/LSMS** contains the following folders of data:
 		1. UGA_2011_UNPS_v01_M_STATA
 		2. TZA_2012_LSMS_v01_M_STATA_English_labels
