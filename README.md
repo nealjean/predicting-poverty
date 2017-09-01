@@ -4,7 +4,7 @@ The data and code in this repository allows users to generate figures appearing 
 
 Code was written in R 3.2.4 and Python 2.7.
 
-Users of these data should cite Jean, Burke, et al. (2016). If you find a consequential error, please email Neal Jean at nealjean@stanford.edu.
+Users of these data should cite Jean, Burke, et al. (2016). If you find an error or have a question, please submit an issue.
 
 ## Description of folders
 
