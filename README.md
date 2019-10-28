@@ -6,6 +6,12 @@ Code was written in R 3.2.4 and Python 2.7.
 
 Users of these data should cite Jean, Burke, et al. (2016). If you find an error or have a question, please submit an issue.
 
+## Links to related projects
+
+We are no longer maintaining this project, but will link to related projects as we learn of them.
+
+Pytorch implementation: https://github.com/jmather625/predicting-poverty-replication
+
 ## Description of folders
 
 - **data**: Input and output data stored here
