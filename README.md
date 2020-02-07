@@ -1,6 +1,6 @@
 # Combining satellite imagery and machine learning to predict poverty
 
-The data and code in this repository allows users to generate figures appearing in the main text of the paper ***Combining satellite imagery and machine learning to produce poverty*** (except for Figure 2, which is constructed from specific satellite images). Paper figures may differ aesthetically due to post-processing.
+The data and code in this repository allows users to generate figures appearing in the main text of the paper ***Combining satellite imagery and machine learning to predict poverty*** (except for Figure 2, which is constructed from specific satellite images). Paper figures may differ aesthetically due to post-processing.
 
 Code was written in R 3.2.4 and Python 2.7.
 
